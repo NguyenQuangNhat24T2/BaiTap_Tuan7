@@ -1,43 +1,41 @@
-package BaiTap_Tuan7; 
+package BaiTap_Tuan7;
+public class SachTieuThuyet extends Sach implements IKiemKe 
+{
+    private boolean laSachSeries;
 
-public class SachTieuThuyet extends Sach implements IKiemKe {
-    private String theLoai;      
-    private boolean laSachSeries; 
-    public SachTieuThuyet(String maSach, String tieuDe, String tacGia, int namXuatBan, int soLuong, double giaCoBan,
-                          String theLoai, boolean laSachSeries) {
+    public SachTieuThuyet(String maSach, String tieuDe, String tacGia, int namXuatBan,int soLuong, double giaCoBan, boolean laSachSeries) {
         super(maSach, tieuDe, tacGia, namXuatBan, soLuong, giaCoBan);
-        this.theLoai = theLoai;
         this.laSachSeries = laSachSeries;
     }
-    public String getTheLoai() { return theLoai; }
-    public void setTheLoai(String theLoai) { this.theLoai = theLoai; }
-    public boolean isLaSachSeries() { return laSachSeries; }
-    public void setLaSachSeries(boolean laSachSeries) { this.laSachSeries = laSachSeries; }
+
+    public boolean isLaSachSeries() { 
+        return laSachSeries; 
+    }
+    public void setLaSachSeries(boolean laSachSeries) { 
+        this.laSachSeries = laSachSeries; 
+    }
+
     @Override
     public double tinhGiaBan() {
-        double phuPhiSeries = laSachSeries ? 15000.0 : 0;
-        return getGiaCoBan() + phuPhiSeries;
+        return giaCoBan + (laSachSeries ? 15000 : 0);
     }
+
     @Override
     public boolean kiemTraTonKho(int soLuongToiThieu) {
-        return getSoLuong() >= soLuongToiThieu;
+        return this.soLuong >= soLuongToiThieu;
     }
+
     @Override
     public void capNhatViTri(String viTriMoi) {
-        System.out.println("Đã chuyển sách [" + getTieuDe() + "] đến khu vực: " + viTriMoi + ".");
+        System.out.println("Da chuyen sach [" + tieuDe + "] den khu vuc: " + viTriMoi);
     }
+
     @Override
-    public String toString() {
-        String isSeries = laSachSeries ? "Co" : "Khong";
-        return "Ma sach: " + getMaSach() + 
-               "\nTieu de: " + getTieuDe() +
-               "\nTac gia: " + getTacGia() +
-               "\nNam xuat ban: " + getNamXuatBan() +
-               "\nSo luong: " + getSoLuong() +
-               "\nGia co ban: " + getGiaCoBan() +
-               "\nThe loai: " + theLoai +
-               "\nLa sach series: " + isSeries +
-               "\nGia ban uoc tinh: " + tinhGiaBan() + " VND" +
-               "\n----------------------";
+    public String toString() 
+    {
+        return super.toString() +
+               ", La series: " + laSachSeries +
+               ", Gia ban: " + tinhGiaBan() + " VND";
     }
 }
+

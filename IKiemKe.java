@@ -1,6 +1,6 @@
 package BaiTap_Tuan7; 
-
-public interface IKiemKe {
+public interface IKiemKe 
+{
     boolean kiemTraTonKho(int soLuongToiThieu); 
     void capNhatViTri(String viTriMoi);
 }
